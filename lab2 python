@@ -1,0 +1,8 @@
+def scalar_product(x1, y1, x2, y2):
+    return x1 * x2 + y1 * y2
+
+# Пример: Вектора A(3, 4) и B(1, 2)
+x1, y1 = 3, 4
+x2, y2 = 1, 2
+result = scalar_product(x1, y1, x2, y2)
+print("Скалярное произведение:", result)
