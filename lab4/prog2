@@ -1,0 +1,8 @@
+14 задание язык Python
+sum_of_multiples = 0
+
+for number in range(100, 201):
+    if number % 17 == 0:
+        sum_of_multiples += number
+
+print(sum_of_multiples)
