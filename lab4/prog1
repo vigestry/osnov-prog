@@ -1,0 +1,47 @@
+задание 34 язык C++
+#include <iostream>
+#include <cmath> // Для функции pow
+using namespace std;
+
+// Прототип функции factorial
+long long int factorial(int n);
+
+// Функция для вычисления суммы
+double calculateSum(int n, double x) {
+    double sum = 0.0; // Инициализируем сумму
+    
+    for (int i = 1; i <= n; ++i) {
+        sum += pow(x, i) / factorial(i); // Считаем сумму
+    }
+    
+    return sum;
+}
+
+// Итеративная функция для вычисления факториала
+long long int factorial(int n) {
+    long long int fact = 1;
+    for (int i = 2; i <= n; ++i) {
+        fact *= i;
+    }
+    return fact;
+}
+
+int main() {
+    int n;
+    double x;
+    
+    cout << "Введите натуральное число n: ";
+    cin >> n;
+    if (n <= 0) {
+        cout << "Ошибка: n должно быть натуральным числом." << endl;
+        return 1;
+    }
+    
+    cout << "Введите действительное число x: ";
+    cin >> x;
+    
+    double result = calculateSum(n, x);
+    cout << "Результат равен " << result << endl;
+    
+    return 0;
+}
