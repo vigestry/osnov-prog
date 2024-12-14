@@ -1,33 +1,40 @@
 задание 47 язык C++
 #include <iostream>
-#include <set>  // Для хранения уникальных значений
-
 using namespace std;
 
+// Функция для нахождения НОД двух чисел
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
 int main() {
-    int N;  // Размер массива
-    cout << "Введите размер массива N: ";
-    cin >> N;
+    int m, n;
 
-    int arr[N];  // Объявление массива размера N
+    // Ввод числителя и знаменателя
+    cout << "Введите числитель m: ";
+    cin >> m;
+    cout << "Введите знаменатель n: ";
+    cin >> n;
 
-    // Ввод элементов массива
-    cout << "Введите элементы массива: ";
-    for (int i = 0; i < N; i++) {
-        cin >> arr[i];
+    if (n == 0) { // Проверка на деление на ноль
+        cout << "Знаменатель не может быть равен 0!" << endl;
+        return 1;
     }
 
-    set<int> uniqueElements;  // Множество для хранения уникальных элементов
-    int i = 0;                // Счетчик для while
+    // Находим НОД числителя и знаменателя
+    int divisor = gcd(m, n);
 
-    // Цикл с предусловием
-    while (i < N) {
-        uniqueElements.insert(arr[i]);  // Добавляем элемент в множество
-        i++;  // Переход к следующему элементу
-    }
+    // Сокращаем дробь
+    int reduced_m = m / divisor;
+    int reduced_n = n / divisor;
 
-    // Вывод количества различных элементов
-    cout << "Количество различных элементов: " << uniqueElements.size() << endl;
+    // Вывод результата
+    cout << "Сокращенная дробь: " << reduced_m << "/" << reduced_n << endl;
 
     return 0;
 }
