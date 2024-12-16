@@ -1,0 +1,39 @@
+задание 33 язык Python
+def is_sorted(row):
+    """
+    Проверяет, упорядочена ли строка row по возрастанию или убыванию.
+    """
+    return row == sorted(row) or row == sorted(row, reverse=True)
+
+
+def find_min_in_sorted_rows(matrix):
+    """
+    Находит минимальный элемент среди упорядоченных строк в матрице.
+    Если таких строк нет, возвращает 0.
+    """
+    min_value = float('inf')  # Инициализация минимального значения как бесконечности
+    found_sorted_row = False  # Флаг для проверки наличия упорядоченных строк
+
+    for row in matrix:
+        if is_sorted(row):  # Если строка упорядочена
+            found_sorted_row = True
+            min_value = min(min_value, min(row))  # Обновляем минимальное значение
+
+    return min_value if found_sorted_row else 0
+
+
+# Ввод размерности матрицы
+n, m = map(int, input("Введите размер матрицы (n m): ").split())
+
+# Ввод матрицы
+matrix = []
+print("Введите матрицу построчно:")
+for _ in range(n):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+# Поиск минимального элемента
+result = find_min_in_sorted_rows(matrix)
+
+# Вывод результата
+print("Результат:", result)
