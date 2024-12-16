@@ -1,0 +1,40 @@
+задание 26 язык Python
+import math
+
+def find_max_distance(points):
+    """
+    Находит номера пары точек с наибольшим расстоянием.
+    :param points: список координат точек [(x1, y1), (x2, y2), ...]
+    :return: номера точек (i, j) и расстояние между ними
+    """
+    max_distance = 0
+    point_pair = (0, 0)
+
+    # Перебираем все пары точек
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            # Вычисляем расстояние между точками i и j
+            distance = math.sqrt((points[i][0] - points[j][0])**2 + (points[i][1] - points[j][1])**2)
+            if distance > max_distance:
+                max_distance = distance
+                point_pair = (i + 1, j + 1)  # Нумерация точек начинается с 1
+
+    return point_pair, max_distance
+
+
+# Ввод числа точек
+N = int(input("Введите количество точек (N ≤ 30): "))
+
+# Ввод координат точек
+print("Введите координаты точек (x y):")
+points = []
+for _ in range(N):
+    x, y = map(int, input().split())
+    points.append((x, y))
+
+# Поиск точек с наибольшим расстоянием
+pair, max_dist = find_max_distance(points)
+
+# Вывод результата
+print(f"Номера точек с наибольшим расстоянием: {pair[0]} и {pair[1]}")
+print(f"Максимальное расстояние: {max_dist:.2f}")
